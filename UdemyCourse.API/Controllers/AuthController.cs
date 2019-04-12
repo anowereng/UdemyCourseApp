@@ -1,45 +1,72 @@
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Linq;
-using UdemyCourse.API.Models;
-using Sampan;
-using System.Data;
+﻿using System;
 using System.Collections.Generic;
-using System.Collections;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using UdemyCourse.API.Models;
 using UdemyCourse.API.Data;
 using UdemyCourse.API.DTO;
 namespace UdemyCourse.API.Controllers
 {
+
+    [Route("api/[controller]")]
+    [ApiController]
     public class AuthController : ControllerBase
     {
+
         private readonly AuthRepository _repo;
-       public AuthController(AuthRepository repo){
+        public AuthController(AuthRepository repo)
+        {
             _repo = repo;
         }
         [HttpPost("Register")]
-        public  IActionResult Register([FromBody] string UserName="",string UserPassword =""){
-            UserDTO model = new UserDTO();
-            model.UserName=model.UserName.ToLower();
-            if(  _repo.UserExists(model.UserName))
-                    return BadRequest("UserName already exists");
+        public IActionResult Register([FromBody] User model)
+        {
+            model.UserName = model.UserName.ToLower();
+            if (_repo.UserExists(model.UserName))
+                return BadRequest("UserName already exists");
 
-                    var usermodel= new User{
-                        UserName=model.UserName 
-                        };
+            var usermodel = new User
+            {
+                UserName = model.UserName
+            };
 
-            var createdUser = _repo.Register(usermodel,model.UserPassword);
+            var createdUser = _repo.Register(usermodel, model.UserPassword);
             return StatusCode(201);
         }
 
-             [HttpPost]
-        [Route("Auth/TestReslt")]
-        public string TestReslt([FromBody] string UserName = "")
+        // GET api/values
+        [HttpGet]
+        public ActionResult<IEnumerable<string>> Get()
         {
-            
-            return UserName;
+            return new string[] { "value1", "value2" };
         }
- 
+
+        // GET api/values/5
+        [HttpGet("{id}")]
+        public ActionResult<string> Get(int id)
+        {
+            return "value";
+        }
+
+        // POST api/values
+        // [HttpPost]
+        // [Route("Post")]
+        // public string DataPost([FromBody] Users model)
+        // {
+        //     return model.Name;
+        // }
+
+        // PUT api/values/5
+        [HttpPut("{id}")]
+        public void Put(int id, [FromBody] string value)
+        {
+        }
+
+        // DELETE api/values/5
+        [HttpDelete("{id}")]
+        public void Delete(int id)
+        {
+        }
     }
 }
-
-

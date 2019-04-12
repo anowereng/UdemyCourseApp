@@ -59,11 +59,11 @@ namespace UdemyCourse.API.Data
         {
             CoreSQLConnection CoreSQL = new CoreSQLConnection();
             ArrayList arrayList = new ArrayList();
-            var Query = "SELECT  cast(Isnull(MAX(CatId),0) AS float)  AS CatId FROM tbl_Student where username='"+username+"'";
+            var Query = "SELECT  cast(Isnull(MAX(UserId),0) AS float)  AS UserId FROM tbl_loginUsers where username='"+username+"'";
             var variable = CoreSQL.CoreSQL_GetDoubleData(Query);
             try
             {
-                if(variable>0) return false; else return true;
+                if(variable>0) return true; else return false;
             }
             catch (Exception ex)
             {
@@ -81,13 +81,13 @@ namespace UdemyCourse.API.Data
         {
             CoreSQLConnection CoreSQL = new CoreSQLConnection();
             ArrayList arrayList = new ArrayList();
-            var Query = "SELECT  cast(Isnull(MAX(Id),0) + 1 AS float)  AS Id FROM tbl_Student";
+            var Query = "SELECT  cast(Isnull(MAX(UserId),0) + 1 AS float)  AS UserId FROM tbl_loginUsers";
             var variable = CoreSQL.CoreSQL_GetDoubleData(Query);
             try
             {
-                var sqlQuery = "Insert Into tbl_loginUsers (Id, UserName, PasswordHash, PasswordSalt)" +
-                               " Values ('" + variable + "','" + model.UserName + "','" + model.PasswordHash + "'," +
-                               "'" + model.PasswordSalt + "')";
+                var sqlQuery = "Insert Into tbl_loginUsers (UserId, UserName, PasswordHash, PasswordSalt)" +
+                               " Values ('" + variable + "','" + model.UserName + "'," + (byte[])model.PasswordHash + "," +
+                               "" + (byte[])model.PasswordSalt + ")";
                 arrayList.Add(sqlQuery);
                 CoreSQL.CoreSQL_SaveDataUseSQLCommand(arrayList);
                 return "Successfully Save.";
