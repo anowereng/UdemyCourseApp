@@ -86,8 +86,8 @@ namespace UdemyCourse.API.Data
             try
             {
                 var sqlQuery = "Insert Into tbl_loginUsers (UserId, UserName, PasswordHash, PasswordSalt)" +
-                               " Values ('" + variable + "','" + model.UserName + "'," + (byte[])model.PasswordHash + "," +
-                               "" + (byte[])model.PasswordSalt + ")";
+                               " Values ('" + variable + "','" + model.UserName + "'," + model.PasswordHash + "," +
+                               "" + model.PasswordSalt + ")";
                 arrayList.Add(sqlQuery);
                 CoreSQL.CoreSQL_SaveDataUseSQLCommand(arrayList);
                 return "Successfully Save.";
