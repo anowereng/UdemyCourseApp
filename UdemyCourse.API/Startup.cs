@@ -37,7 +37,7 @@ namespace UdemyCourse.API
                     .AllowAnyHeader()
                     .AllowCredentials());
             });
-            services.AddScoped<AuthRepository>();
+            services.AddScoped<LoginQuery>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
