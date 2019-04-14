@@ -31,9 +31,11 @@ namespace UdemyCourse.API.Controllers
         }
 
         [HttpPost("Login")]
-        public IActionResult Login (Login model)
+        public IActionResult Login (User model)
         {
-            
+            if(_lQuery.LoginUser(model))
+                return StatusCode(201);
+            return BadRequest("UserName and Password are Incorrect !!!!");
         }
            
 
