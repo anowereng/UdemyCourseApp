@@ -10,6 +10,7 @@ import { LoginService } from './_services/login.service';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { ErrorInterceptor } from './_services/error.interceptor';
 
 @NgModule({
    declarations: [
@@ -27,7 +28,8 @@ import { RegisterComponent } from './register/register.component';
       HttpClientModule
    ],
    providers: [
-      LoginService
+      LoginService,
+      ErrorInterceptor
    ],
    bootstrap: [
       AppComponent

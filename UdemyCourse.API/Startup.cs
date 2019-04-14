@@ -12,6 +12,10 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json.Serialization;
 using UdemyCourse.API.Data;
+using System.Net;
+using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.AspNetCore.Http;
+using UdemyCourse.API.Helpers;
 
 namespace UdemyCourse.API
 {
@@ -51,8 +55,24 @@ namespace UdemyCourse.API
             }
             else
             {
+                app.UseExceptionHandler(builder =>
+                {
+                    builder.Run(async context =>
+                    {
+                        context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+
+                        var error = context.Features.Get<IExceptionHandlerFeature>();
+
+                        if (error != null)
+                        {
+                            context.Response.AddApplicationError(error.Error.Message);
+                            await context.Response.WriteAsync(error.Error.Message);
+                        }
+                    });
+                });
+
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
+                //app.UseHsts();
             }
             app.UseCors(x => x.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod());
             app.UseHttpsRedirection();

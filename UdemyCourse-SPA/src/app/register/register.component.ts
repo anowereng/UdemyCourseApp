@@ -19,7 +19,7 @@ registerMode = false;
       this.loginService.register(this.model).subscribe(next => {
         console.log('Register Successfully');
       }, error => {
-          console.log('Failed to Register');
+          console.log(error);
       });
       this.model.UserName = '';
       this.model.UserPassword = '';
