@@ -50,6 +50,43 @@ namespace UdemyCourse.API.Data
             {
             }
         }
+
+        public bool Login (Login model)
+        {
+            DataSet dsList = new DataSet();
+            Login login = new Login();
+            CoreSQLConnection CoreSQL = new CoreSQLConnection();
+            try
+            {
+                if (model.UserName != null && model.Password != null)
+                {
+                    if (model.UserName.Trim() != "" && model.Password.Trim() != "")
+                    {
+                        String strQuery = "Exec prcGetValidateLogin '"+model.userName+"'";
+                        dsList = CoreSQL.CoreSQL_GetDataSet(strQuery);
+                        dsList.Tables[0].TableName = "Login";
+                        foreach (DataRow row in dsList.Tables[0].Rows)
+                        {
+                            if (CoreSQL.GetDecryptedData(row[2].ToString()) == model.Password)
+                            {
+                                login.prcSetData(row);
+                                break;
+                                return true;
+                            }
+                        }
+                    }
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
+            finally
+            {
+            }
+        }
+
     }
     
 }

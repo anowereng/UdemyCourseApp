@@ -31,17 +31,11 @@ namespace UdemyCourse.API.Controllers
         }
 
         [HttpPost("Login")]
-        public IActionResult Login([FromBody] User model)
+        public IActionResult Login (Login model)
         {
-            model.UserName = model.UserName.ToLower();
-            if (_lQuery.UserExists(model.UserName))
-                return BadRequest("userName already exists, try different name !!");
-
-            var createdUser = _lQuery.CreateUser(model);
-            return StatusCode(201);
+            
         }
-
-
+           
 
     }
 }
