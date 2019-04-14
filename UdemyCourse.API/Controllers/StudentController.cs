@@ -18,7 +18,7 @@ namespace UdemyCourse.API.Controllers
             try
             {
                 var msg = ""; string Query = "";
-                CoreSQLConnection CoreSQL = new CoreSQLConnection();
+                CoreSQLConnection CoreSQL = new CoreSQLConnection("");
                 List<Student> CatList = new List<Student>();
                 var StudentList = CatList;
                 try
