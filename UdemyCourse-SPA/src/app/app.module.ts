@@ -7,12 +7,18 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { ValuesComponent } from './values/values.component';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginService } from './_services/login.service';
+import { HomeComponent } from './home/home.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
    declarations: [
       AppComponent,
       NavbarComponent,
-      ValuesComponent
+      ValuesComponent,
+      HomeComponent,
+      LoginComponent,
+      RegisterComponent
    ],
    imports: [
       BrowserModule,
@@ -20,7 +26,9 @@ import { LoginService } from './_services/login.service';
       FormsModule,
       HttpClientModule
    ],
-   providers: [LoginService],
+   providers: [
+      LoginService
+   ],
    bootstrap: [
       AppComponent
    ]
