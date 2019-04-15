@@ -41,6 +41,7 @@ namespace UdemyCourse.API.Controllers
         [HttpPost("Login")]
         public IActionResult Login (User model)
         {
+            throw new Exception("Computer Syas NO !!!");
            var amodel = _lQuery.LoginUser(model.UserName, model.UserPassword);
           if(amodel==null)  return Unauthorized();       
         var claims = new []
