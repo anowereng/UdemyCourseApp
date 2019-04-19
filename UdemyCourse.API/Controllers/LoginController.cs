@@ -30,7 +30,7 @@ namespace UdemyCourse.API.Controllers
         [HttpPost("Register")]
         public IActionResult Register([FromBody] User model)
         {
-            throw new Exception("Computer Syas NO !!!");
+           // throw new Exception("Computer Syas NO !!!");
             model.UserName = model.UserName.ToLower();
             if (_lQuery.UserExists(model.UserName))
                 return BadRequest("userName already exists, try different name !!");
@@ -42,7 +42,7 @@ namespace UdemyCourse.API.Controllers
         [HttpPost("Login")]
         public IActionResult Login (User model)
         {
-             throw new Exception("Computer Syas NO !!!");
+            //  throw new Exception("Computer Syas NO !!!");
            var amodel = _lQuery.LoginUser(model.UserName, model.UserPassword);
           if(amodel==null)  return Unauthorized();       
         var claims = new []
