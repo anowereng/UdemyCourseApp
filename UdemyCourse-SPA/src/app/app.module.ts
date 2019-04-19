@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ValuesComponent } from './values/values.component';
@@ -16,6 +15,8 @@ import { BsDropdownModule } from 'ngx-bootstrap';
 import { MemberListComponent } from './member-list/member-list.component';
 import { ListComponent } from './list/list.component';
 import { MessagesComponent } from './messages/messages.component';
+import { RouterModule } from '@angular/router';
+import { appRoutes } from './routes';
 @NgModule({
    declarations: [
       AppComponent,
@@ -30,10 +31,10 @@ import { MessagesComponent } from './messages/messages.component';
    ],
    imports: [
       BrowserModule,
-      AppRoutingModule,
       FormsModule,
       HttpClientModule,
-      BsDropdownModule.forRoot()
+      BsDropdownModule.forRoot(),
+      RouterModule.forRoot(appRoutes)
    ],
    providers: [
       LoginService,
