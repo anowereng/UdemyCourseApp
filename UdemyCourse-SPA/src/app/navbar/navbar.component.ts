@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../_services/login.service';
+import { AlertifyService } from '../_services/alertify.service';
 
 @Component({
   selector: 'app-navbar',
@@ -9,24 +10,26 @@ import { LoginService } from '../_services/login.service';
 export class NavbarComponent implements OnInit {
 
   model: any = {};
-  constructor(private loginService: LoginService) { }
+  constructor(public loginService: LoginService, private alertify: AlertifyService) { }
 
   ngOnInit() {
   }
   login() {
     this.loginService.login(this.model).subscribe(next => {
-      console.log('Logged in Successfully');
+      this.alertify.success('Logged in successfully');
+      // console.log('Logged in Successfully');
     }, error => {
-        console.log(error);
+        this.alertify.error(error);
     } );
   }
   loggedIn() {
-    const token = localStorage.getItem('token');
-    return !!token;
+    // const token = localStorage.getItem('token');
+    // return !!token;
+    return this.loginService.loggedIn();
   }
   logout() {
     localStorage.removeItem('token');
-    console.log('logged out');
+    this.alertify.message( 'logged out !!');
   }
 
 }

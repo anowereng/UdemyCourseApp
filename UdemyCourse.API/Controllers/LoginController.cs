@@ -31,12 +31,31 @@ namespace UdemyCourse.API.Controllers
         public IActionResult Register([FromBody] User model)
         {
            // throw new Exception("Computer Syas NO !!!");
+           var createdUser="";
             model.UserName = model.UserName.ToLower();
-            if (_lQuery.UserExists(model.UserName))
-                return BadRequest("userName already exists, try different name !!");
 
-            var createdUser = _lQuery.CreateUser(model);
-            return StatusCode(201);
+            if (ModelState.IsValid)
+            {
+                    if (_lQuery.UserExists(model.UserName))
+
+                    return BadRequest("userName already exists, try different name !!");
+
+                    else
+                
+                        _lQuery.CreateUser(model);
+                return  Ok("User Create Successfully !!");
+            }
+            else
+            {
+                var errors = ModelState.Select(x => x.Value.Errors)
+                                    .Where(y=>y.Count>0)
+                                    .ToList();
+                  return BadRequest();
+            }
+
+      
+       
+       
         }
 
         [HttpPost("Login")]
