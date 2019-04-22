@@ -1,0 +1,31 @@
+
+<div class="col-md-8 ml-10">
+
+
+<table class="table table-bordered table-stripped">
+  <thead>
+    <tr>
+      <td>Client Id</td>
+            <td>Client Code</td>
+      <td>Client Name</td>
+
+      <td>Client Type</td>
+      <td>Client Address</td>
+      <td>Client OPBalance</td>
+      <td>Action</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of customer">
+      <td> {{user.ClientId}}</td>
+            <td> {{user.ClientCode}}</td>
+      <td> {{user.ClientName}}</td>
+
+      <td> {{user.ClientType}}</td>
+      <td> {{user.ClientAddress}}</td>
+      <td> {{user.ClientOPBalance}}</td>
+      <td><a [routerLink]="['/customer-list',user.ClientId]" routerLinkActive="router-link-active" ><i class="fa fa-pencil"></i></a></td>
+    </tr>
+  </tbody>
+</table>
+</div>

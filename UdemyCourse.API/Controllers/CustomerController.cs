@@ -28,10 +28,12 @@ namespace UdemyCourse.API.Controllers
 
         // GET api/values/5
         [HttpGet("{id}")]
-        [Route("Get")]
-        public ActionResult<string> GetCustomerById(int id)
+        [Route("GetCustomer")]
+        public ActionResult GetCustomer(int id)
         {
-            return "value";
+            CustomerQuery model = new CustomerQuery();
+            var CustomerList = model.GetCustomerById(id);
+            return Content(CustomerList);
         }
 
         // POST api/values

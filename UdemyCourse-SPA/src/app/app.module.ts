@@ -19,9 +19,10 @@ import { RouterModule } from '@angular/router';
 import { appRoutes } from './routes';
 import { AuthGuard } from './_guard/auth.guard';
 import { CustomerService } from './_services/customer.service';
-import { CustomerComponent } from './Customer/Customer.component';
+import { CustomerListComponent } from './customer/customer-list/customer-list.component';
 import { ClientComponent } from './Client/Client.component';
 import { JwtModule } from '@auth0/angular-jwt';
+import { CustomerDetailsComponent } from './customer/customer-details/customer-details.component';
 
 export function tokenGetter( ) {
    return localStorage.getItem('token');
@@ -38,8 +39,9 @@ export function tokenGetter( ) {
       MemberListComponent,
       ListComponent,
       MessagesComponent,
-      CustomerComponent,
-      ClientComponent
+      CustomerListComponent,
+     ClientComponent,
+     CustomerDetailsComponent 
    ],
    imports: [
       BrowserModule,

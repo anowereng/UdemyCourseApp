@@ -16,6 +16,14 @@ namespace UdemyCourse.API.SQL_Query
             dsList = CoreSQL.CoreSQL_GetDataSet(strQuery);
             return clsCommon.JsonSerialize(dsList.Tables[0]);
         }
+           public string GetCustomerById(int id)
+        {
+            CoreSQLConnection CoreSQL = new CoreSQLConnection();
+            dsList = new DataSet();
+            string strQuery = "Exec prcGet_Customer '"+id+"' ";
+            dsList = CoreSQL.CoreSQL_GetDataSet(strQuery);
+            return clsCommon.JsonSerialize(dsList.Tables[0]);
+        }
 
     }
 }
