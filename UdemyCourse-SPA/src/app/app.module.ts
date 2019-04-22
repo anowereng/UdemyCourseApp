@@ -21,6 +21,12 @@ import { AuthGuard } from './_guard/auth.guard';
 import { CustomerService } from './_services/customer.service';
 import { CustomerComponent } from './Customer/Customer.component';
 import { ClientComponent } from './Client/Client.component';
+import { JwtModule } from '@auth0/angular-jwt';
+
+export function tokenGetter( ) {
+   return localStorage.getItem('token');
+}
+
 @NgModule({
    declarations: [
       AppComponent,
@@ -40,7 +46,14 @@ import { ClientComponent } from './Client/Client.component';
       FormsModule,
       HttpClientModule,
       BsDropdownModule.forRoot(),
-      RouterModule.forRoot(appRoutes)
+      RouterModule.forRoot(appRoutes),
+      JwtModule.forRoot({
+         config: {
+            tokenGetter: tokenGetter,
+            whitelistedDomains: ['localhost:5000'],
+            blacklistedRoutes: ['localhost:5000/api/login']
+         }
+      })
    ],
    providers: [
       LoginService,
