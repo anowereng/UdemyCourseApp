@@ -13,17 +13,16 @@ namespace UdemyCourse.API.Controllers
     [ApiController]
     public class CustomerController : ControllerBase
     {
-        private readonly CustomerQuery _cQuery;
-        public CustomerController(CustomerQuery repo)
-        {
-            _cQuery = repo;
-        }
-
+        // private readonly CustomerQuery _cQuery;
+        // public CustomerController(CustomerQuery repo)
+        // {
+        //     _cQuery = repo;
+        // }
         [HttpGet]
-        [Route("Get")]
-        public ActionResult CustomerList()
+        public ActionResult  GetCustomer()
         {
-            var CustomerList = _cQuery.GetCustomer();
+            CustomerQuery model = new CustomerQuery();
+            var CustomerList = model.GetCustomer();
             return Content(CustomerList);
         }
 

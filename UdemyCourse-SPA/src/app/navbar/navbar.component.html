@@ -14,13 +14,15 @@
     <li class="nav-item" routerLinkActive="active">
       <a class="nav-link" [routerLink]="['/list']">Lists</a>
     </li>
-
-    <li class="nav-item" routerLinkActive="active" >
-      <a class="nav-link" [routerLink]="['/messages']" >Messages</a>
+    <li class="nav-item" routerLinkActive="active">
+      <a class="nav-link" [routerLink]="['/messages']">Messages</a>
+    </li>
+    <li class="nav-item" routerLinkActive="active">
+      <a class="nav-link" [routerLink]="['/customer']">Customer</a>
     </li>
     <!-- <li class="nav-item">
-            <a class="nav-link" (click)="logout()">LogOut</a>
-          </li> -->
+          <a class="nav-link" (click)="logout()">LogOut</a>
+        </li> -->
   </ul>
   <div *ngIf="loggedIn()" class="dropdown" dropdown>
     <a class="dropdown-toggle text-light" *ngIf="loggedIn()" dropdownToggle>

@@ -46,7 +46,7 @@ namespace UdemyCourse.API
             //});
             services.AddCors();
             services.AddScoped<LoginQuery>();
-// Bearer Authentication
+            // Bearer Authentication
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {

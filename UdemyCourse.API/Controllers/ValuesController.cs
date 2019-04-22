@@ -13,7 +13,7 @@ namespace UdemyCourse.API.Controllers
     public class ValuesController : ControllerBase
     {
         // GET api/values
-        //[AllowAnonymous]
+        [AllowAnonymous]
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {

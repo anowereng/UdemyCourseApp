@@ -6,10 +6,10 @@ export interface Customer {
     ClientType: string;
     ClientOPBalance: string;
     Remarks: string;
-    ClientSub: [ClientSub];
+    // ClientSub: [ClientSub];
 }
-interface ClientSub {
-    ClientId: number;
-    ClientPhone: string;
-    ClientEmail: string;
-}
+// interface ClientSub {
+//     ClientId: number;
+//     ClientPhone: string;
+//     ClientEmail: string;
+// }

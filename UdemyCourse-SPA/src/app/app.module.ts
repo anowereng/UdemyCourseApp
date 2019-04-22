@@ -18,6 +18,9 @@ import { MessagesComponent } from './messages/messages.component';
 import { RouterModule } from '@angular/router';
 import { appRoutes } from './routes';
 import { AuthGuard } from './_guard/auth.guard';
+import { CustomerService } from './_services/customer.service';
+import { CustomerComponent } from './Customer/Customer.component';
+import { ClientComponent } from './Client/Client.component';
 @NgModule({
    declarations: [
       AppComponent,
@@ -28,7 +31,9 @@ import { AuthGuard } from './_guard/auth.guard';
       RegisterComponent,
       MemberListComponent,
       ListComponent,
-      MessagesComponent
+      MessagesComponent,
+      CustomerComponent,
+      ClientComponent
    ],
    imports: [
       BrowserModule,
@@ -41,7 +46,8 @@ import { AuthGuard } from './_guard/auth.guard';
       LoginService,
       ErrorInterceptorProvider,
       AlertifyService,
-      AuthGuard
+      AuthGuard,
+      CustomerService
    ],
    bootstrap: [
       AppComponent
